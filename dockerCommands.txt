@@ -49,3 +49,50 @@ docker container run -it
 
 #Run additional command in existing container
 docker container exec -it
+
+#Get IP address of container
+docker inspect --format '{{.NetworkSettings.IPAddress}}' webhost
+
+#Get port of the container
+docker container port webhost
+
+#create a new virtual Network
+docker network create --driver
+
+#Attach a network to container'
+docker network connect
+
+#Detach a network from container
+docker network disconnect
+
+#create example
+docker network create my_app_net
+
+#Creating network with run command
+docker network run -d --name new_ngnix --network  my_app_net ngnix
+
+#Connecting to a network
+docker network connect my_app_name <container_name>
+
+#Ping command
+docker container exec -t my_nginx ping new_nginx
+
+#Assign the container a network alias called search (acts like a hostname within the dude network)
+docker container run -d --net dude --net-alias search elasticsearch:2
+
+#Runs the nslookup command inside the container to look up the DNS address of the hostname search
+docker container run --rm --net dude alpine nslookup search
+
+Non-authoritative answer:
+Name:   search
+Address: 172.19.0.3
+Name:   search
+Address: 172.19.0.2
+
+#Runs curl silently to send an HTTP request to http://search:9200
+docker container run --rm --net dude centos curl -s search:9200
+
+#This will instantly test the connection to your Elasticsearch container (aliased as search) on port 9200.
+docker run --rm --net dude curlimages/curl search:9200
+
+
