@@ -95,4 +95,16 @@ docker container run --rm --net dude centos curl -s search:9200
 #This will instantly test the connection to your Elasticsearch container (aliased as search) on port 9200.
 docker run --rm --net dude curlimages/curl search:9200
 
+#Pulling the latest version of image
+docker pull ngnix
 
+docker pull nginx:1.11.9
+
+#History of image
+docker image history nginx:latest
+
+#Docker create tag
+docker image tag nginx shwetank04/nginx
+
+#Docker push tag
+docker image push shwetank04/nginx
