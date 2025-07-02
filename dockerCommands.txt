@@ -108,3 +108,8 @@ docker image tag nginx shwetank04/nginx
 
 #Docker push tag
 docker image push shwetank04/nginx
+
+#Building custom docker file
+docker image build -t customnginx .
+
+docker image build -t nginx-with-html -f CustomDockerfile .

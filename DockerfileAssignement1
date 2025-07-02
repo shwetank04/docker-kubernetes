@@ -1,0 +1,21 @@
+# Use official Node 6.x Alpine image
+FROM node:6-alpine
+
+# Install Tini (a minimal init system for containers)
+RUN apk add --no-cache tini
+
+# Set working directory inside the container
+WORKDIR /usr/src/app
+
+# Copy only package.json and install dependencies
+COPY package.json ./
+RUN npm install && npm cache clean --force
+
+# Copy the rest of the app source code
+COPY . .
+
+# Expose port 3000 in the container (mapped to 80 on host)
+EXPOSE 3000
+
+# Use Tini to launch the app correctly
+CMD ["/sbin/tini", "--", "node", "./bin/www"]
