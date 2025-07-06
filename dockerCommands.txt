@@ -150,3 +150,10 @@ docker container run -d --name nginx -p 80:80 -v "%cd%":/usr/share/nginx/html ng
 docker-compose up
 
 docker-compose down
+
+#Registry
+docker container run -d -p 5000:5000 --name registry registry
+
+docker tag hello-world 127.0.0.1:5000/hello-world
+
+docker push 127.0.0.1:5000/hello-world
