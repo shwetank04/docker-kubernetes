@@ -145,3 +145,8 @@ docker container run -d --name mysql3 -e MYSQL_ALLOW_EMPTY_PASSWORD=True -v mysq
 
 #Bind Mounding
 docker container run -d --name nginx -p 80:80 -v "%cd%":/usr/share/nginx/html nginx
+
+#docker compose 
+docker-compose up
+
+docker-compose down
