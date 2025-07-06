@@ -1,0 +1,15 @@
+FROM busybox:latest
+
+ENTRYPOINT ["hostname"]
+
+
+#With CMD
+# docker run hostname date
+# Sat Jul  5 12:33:40 UTC 2025
+
+#With EntryPoint
+# docker run entryhostname date
+# hostname: sethostname: Operation not permitted
+
+#docker run --entrypoint date entryhostname
+# Sat Jul  5 12:36:01 UTC 2025
