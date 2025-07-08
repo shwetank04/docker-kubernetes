@@ -1,0 +1,31 @@
+#Kubernetes CLI testing
+kubectl version
+
+#Running a pod of nginx
+kubectl run my-nginx --image nginx
+
+#List of pod
+kubectl get pods
+
+#List all objects
+kubectl get all
+
+NAME           READY   STATUS    RESTARTS   AGE
+pod/my-nginx   1/1     Running   0          3m14s
+
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   5m19s
+
+#Creating a Deployment
+kubectl create deployment my-nginx --image nginx
+
+#Delete the pods and deployment
+kubectl delete pod my-nginx
+
+kubectl delete deployment my-nginx
+
+#Scaling Replica Set
+kubectl create deployment my-apache --image httpd
+
+kubectl scale deploy/my-apache --replicas 2
+kubectl scale deploy my-apache --replicas 2
