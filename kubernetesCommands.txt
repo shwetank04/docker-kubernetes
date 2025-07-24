@@ -23,9 +23,39 @@ kubectl create deployment my-nginx --image nginx
 kubectl delete pod my-nginx
 
 kubectl delete deployment my-nginx
-
+           
 #Scaling Replica Set
 kubectl create deployment my-apache --image httpd
 
-kubectl scale deploy/my-apache --replicas 2
+kubectl scale deploy/my-apache --  2
 kubectl scale deploy my-apache --replicas 2
+
+#Inspecting the resources
+kubectl get deploy/my-apache
+
+kubectl get nodes
+
+kubectl get pods
+
+#show more with wide output.
+kubectl get all -o wide
+
+#Describe command to get the info
+kubectl describe deploy/my-apache
+
+#Watching resources.
+kubectl get pods -w
+
+#Waiting for new events.
+kubectl get events --watch-only
+
+#Container logs in kubernetes
+kubectl logs deploy/my-apache
+
+kubectl logs deploy/my-apache --follow --tail 1 //Wait for new records.
+
+kubectl logs pod/my-apache-xxx-yyy -c httpd //for certain pod in a container
+
+kubectl logs pod/my-apache-xxx-yyy -all-containers=true //all containers
+
+kubectl logs -l app=my-apache //multiple pods logs
