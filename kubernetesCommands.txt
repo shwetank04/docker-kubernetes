@@ -74,3 +74,10 @@ httpenv-np   NodePort    10.105.53.185   <none>        8888:32522/TCP   2m17s
 
 #Docker desktop provides built in LoadBalancer that published the --port on localhost.
 kubectl expose deployment/httpenv --port 8888 --name httpenv-lb --type LoadBalancer
+
+#Resource Generator
+kubectl create deployment sample --image nginx --dry-run=client -o yaml
+
+kubectl create job test --image nginx --dry-run=client -o yaml
+
+kubectl expose deployment/test --port 80 --dry-run=client -o yaml
