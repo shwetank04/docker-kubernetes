@@ -55,7 +55,22 @@ kubectl logs deploy/my-apache
 kubectl logs deploy/my-apache --follow --tail 1 //Wait for new records.
 
 kubectl logs pod/my-apache-xxx-yyy -c httpd //for certain pod in a container
-
+SSSSG
 kubectl logs pod/my-apache-xxx-yyy -all-containers=true //all containers
 
 kubectl logs -l app=my-apache //multiple pods logs
+
+#Exposing a service
+kubectl expose deployment/httpenv --port 8888
+
+#To access the above port
+kubectl run http-shell --rm -it --image nginx --bash
+
+#Node port
+kubectl expose deployment/httpenv --port 8888 --name httpenv-np --type NodePort
+
+//Right port is exposed to outside world
+httpenv-np   NodePort    10.105.53.185   <none>        8888:32522/TCP   2m17s
+
+#Docker desktop provides built in LoadBalancer that published the --port on localhost.
+kubectl expose deployment/httpenv --port 8888 --name httpenv-lb --type LoadBalancer
