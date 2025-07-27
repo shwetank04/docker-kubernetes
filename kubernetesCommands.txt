@@ -81,3 +81,10 @@ kubectl create deployment sample --image nginx --dry-run=client -o yaml
 kubectl create job test --image nginx --dry-run=client -o yaml
 
 kubectl expose deployment/test --port 80 --dry-run=client -o yaml
+
+#Configuration commands
+kubectl api-resources
+
+kubectl api-versions
+
+kubectl explain services.spec.type
